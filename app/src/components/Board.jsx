@@ -1,4 +1,4 @@
-import { cloneElement, useEffect, useState } from "react"
+import { useEffect, useState } from "react"
 import Cell from "./Cell";
 
 export default function Board(){
