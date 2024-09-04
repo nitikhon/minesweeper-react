@@ -3,7 +3,6 @@ import Cell from "./Cell";
 import GameOver from "./GameOver";
 
 export default function Board(){
-    console.log("board refresh")
     // ระดับความยาก
     const difficulty = {
         easy: [9, 9],
@@ -21,11 +20,11 @@ export default function Board(){
     const getGridColsClass = () => {
         const cols = difficulty[gameMode][1];
         switch (cols) {
-            case '9':
+            case 9:
                 return 'grid-cols-9';
-            case '16':
+            case 16:
                 return 'grid-cols-16';
-            case '30':
+            case 30:
                 return 'grid-cols-30';
             default:
                 return 'grid-cols-9';
@@ -41,6 +40,10 @@ export default function Board(){
     });
     // เช็คว่าเป็น move แรกมั้ย
     const [firstMove, setFirstMove] = useState(true);
+    // เช็คว่าทำ flag ฐน mine ครบทุกอันรึยัง
+    const [currentFlag, setCurrentFlag] = useState(0)
+    // ใช้เช็คว่าเปิดทุกช่องที่ไม่ใช่ระเบิดครบรึยัง
+    const [mineRevealed, setMineRevealed] = useState(0);
 
     // generate กระดาน
     const generateAllCells = () => {
@@ -82,6 +85,7 @@ export default function Board(){
     
         // Reveal current cell
         cells[row][col].isRevealed = true;
+        setMineRevealed(prevVal => prevVal + 1);
         setCells([...cells]);
     
         // If the cell is empty, reveal its neighbors
@@ -193,6 +197,7 @@ export default function Board(){
                 toggleFlag={toggleFlag}
                 toggleLandMine={toggleLandMine}
                 revealEmptyCells={revealEmptyCells}
+                setCurrentFlag={setCurrentFlag}
                 isRevealed={cell.isRevealed}
                 hasMine={cell.hasMine} 
                 isFlag={cell.isFlag} 
@@ -203,20 +208,27 @@ export default function Board(){
         );
     
     useEffect(() => {
-        console.log(gameOver.currentState)
+        const rows = difficulty[gameMode][0];
+        const cols = difficulty[gameMode][1];
+        // ถ้า game over แล้วแสดงทุก cell เพื่อดูผลลัพธ์
         if (gameOver.currentState){
-            const rows = difficulty[gameMode][0];
-            const cols = difficulty[gameMode][1];
             for(let i = 0; i < rows; i++){
                 for(let j = 0; j < cols; j++){
                     cells[i][j].isRevealed = true;
                 }
             }
             setCells([...cells]);
+        } else {
+            if (mineRevealed === rows * cols - minesCount[gameMode]){
+                setGameOver({
+                    currentState: true,
+                    isWinning: true
+                })
             }
-            
+        }
+
     // DO NOT EDIT THIS (it works for now...) 
-    }, [gameOver.currentState])
+    }, [gameOver.currentState, mineRevealed])
 
     return (
         <div className="flex flex-col justify-center items-center mt-2">
@@ -235,6 +247,7 @@ export default function Board(){
                         isWinning: false,
                     });
                     setFirstMove(true);
+                    setMineRevealed(0);
                 }}
                 className="mt-6 border-2 border-black p-1">
                 <i className="fa-solid fa-rotate-right"></i>

@@ -5,6 +5,7 @@ export default function Cell (props){
                 onContextMenu={(e) => {
                     e.preventDefault();
                     props.toggleFlag(props.row, props.col);
+                    props.setCurrentFlag(prevFlag => prevFlag + 1);
                 }}
                 onClick={() => {
                     props.toggleLandMine(props.row, props.col);
@@ -21,10 +22,6 @@ export default function Cell (props){
     } else {
        return (
             <div
-                onContextMenu={(e) => {
-                    e.preventDefault();
-                    props.toggleFlag(props.row, props.col);
-                }}
                 onClick={() => {
                     props.toggleLandMine(props.row, props.col);
                 }}
