@@ -1,3 +1,20 @@
+.game-container {
+    @apply flex flex-col justify-center items-center mt-2;
+}
+
+.title-container {
+    @apply mt-4 mb-8;
+}
+
+.game-stats {
+    @apply mb-4;
+}
+
+.board-container {
+    @apply grid gap-1 justify-items-center p-2 border-2 border-black 
+    border-solid rounded-md;
+}
+
 .unrevealed {
     @apply w-5 h-5 bg-gray-400 border border-black flex items-center
     justify-center rounded-sm;
@@ -10,6 +27,10 @@
     justify-center rounded-sm;
 
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.restart {
+    @apply mt-6 border-2 border-black p-1 w-10 h-10;
 }
 
 .mined {

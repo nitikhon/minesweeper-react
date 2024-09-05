@@ -1,4 +1,4 @@
-import './Cell.css';
+import './Game.css';
 
 export default function Cell (props){
     if (!props.isRevealed){

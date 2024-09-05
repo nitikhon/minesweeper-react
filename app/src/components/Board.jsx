@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cell from "./Cell";
 import GameOver from "./GameOver";
+import './Game.css';
 
 export default function Board(){
     // ระดับความยาก
@@ -231,11 +232,16 @@ export default function Board(){
     }, [gameOver.currentState, mineRevealed])
 
     return (
-        <div className="flex flex-col justify-center items-center mt-2">
+        <div className="game-container">
+            <div className="title-container">
+                <h1>Simple Minesweeper</h1>
+                <h2>Powered by React.js</h2>
+            </div>
+            <div className="game-stats">
+                <p>Mines: {minesCount[gameMode]}</p>
+            </div>
             {gameOver.currentState ? <GameOver isWinning={gameOver.isWinning} isShow={gameOver.currentState}/> : ''}
-            <div className={`grid ${getGridColsClass()} 
-            gap-1 justify-items-center p-2 border-2 border-black 
-            border-solid rounded-md`}>
+            <div className={`board-container ${getGridColsClass()}`}>
                 {cellElements}
             </div>
             {gameOver.currentState && 
@@ -249,7 +255,7 @@ export default function Board(){
                     setFirstMove(true);
                     setMineRevealed(0);
                 }}
-                className="mt-6 border-2 border-black p-1">
+                className="restart">
                 <i className="fa-solid fa-rotate-right"></i>
             </button>
             }
