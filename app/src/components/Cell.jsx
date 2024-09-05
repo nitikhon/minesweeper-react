@@ -1,4 +1,5 @@
 import './Game.css';
+import './Adjacent.css';
 
 export default function Cell (props){
     if (!props.isRevealed){
@@ -26,7 +27,9 @@ export default function Cell (props){
                 onClick={() => {
                     props.toggleLandMine(props.row, props.col);
                 }}
-                className={`revealed ${props.hasMine && 'mined'}`}
+                className={`revealed ${props.hasMine && 'mined'}
+                    ${!props.hasMine && props.adjMine > 0 && `adjacent-${props.adjMine}`}
+                `}
             >
                 {props.hasMine ? "X" : (props.adjMine !== 0 && props.adjMine)}
             </div>

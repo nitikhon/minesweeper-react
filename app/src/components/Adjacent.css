@@ -1,0 +1,31 @@
+.adjacent-1 {
+    @apply font-bold text-blue-600;
+}
+
+.adjacent-2 {
+    @apply font-bold text-green-600;
+}
+
+.adjacent-3 {
+    @apply font-bold text-red-600;
+}
+
+.adjacent-4 {
+    @apply font-bold text-purple-600;
+}
+
+.adjacent-5 {
+    @apply font-bold text-yellow-600;
+}
+
+.adjacent-6 {
+    @apply font-bold text-pink-600;
+}
+
+.adjacent-7 {
+    @apply font-bold text-indigo-600;
+}
+
+.adjacent-8 {
+    @apply font-bold text-gray-700;
+}
