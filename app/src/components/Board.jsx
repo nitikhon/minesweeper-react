@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import Cell from "./Cell";
 import GameOver from "./GameOver";
+import DiffSelect from './DiffSelect.jsx';
 import './Game.css';
 
 export default function Board(){
@@ -238,6 +239,7 @@ export default function Board(){
                 <h2>Powered by React.js</h2>
             </div>
             <div className="game-stats">
+                <DiffSelect diff='easy'/>
                 <p>Mines: {minesCount[gameMode]}</p>
             </div>
             {gameOver.currentState ? <GameOver isWinning={gameOver.isWinning} isShow={gameOver.currentState}/> : ''}
