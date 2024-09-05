@@ -31,7 +31,7 @@ export default function Cell (props){
                     ${!props.hasMine && props.adjMine > 0 && `adjacent-${props.adjMine}`}
                 `}
             >
-                {props.hasMine ? "X" : (props.adjMine !== 0 && props.adjMine)}
+                {props.hasMine ? <i className="fa-solid fa-bomb"></i> : (props.adjMine !== 0 && props.adjMine)}
             </div>
         ) 
     } 

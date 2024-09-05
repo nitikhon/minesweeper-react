@@ -191,6 +191,16 @@ export default function Board(){
             }
         }
     };
+
+    const generateNewGame = () => {
+        setCells(generateAllCells);
+        setGameOver({
+            currentState: false,
+            isWinning: false,
+        });
+        setFirstMove(true);
+        setMineRevealed(0);
+    }
     
     // map each cell to cell component
     const cellElements = cells.map(cellRow =>
@@ -242,21 +252,18 @@ export default function Board(){
                 <DiffSelect diff='easy'/>
                 <p>Mines: {minesCount[gameMode]}</p>
             </div>
-            {gameOver.currentState ? <GameOver isWinning={gameOver.isWinning} isShow={gameOver.currentState}/> : ''}
+            {gameOver.currentState && 
+            <GameOver 
+                isWinning={gameOver.isWinning} 
+                isShow={gameOver.currentState} 
+                generateNewGame={generateNewGame}
+            />}
             <div className={`board-container ${getGridColsClass()}`}>
                 {cellElements}
             </div>
             {gameOver.currentState && 
             <button
-                onClick={() => {
-                    setCells(generateAllCells);
-                    setGameOver({
-                        currentState: false,
-                        isWinning: false,
-                    });
-                    setFirstMove(true);
-                    setMineRevealed(0);
-                }}
+                onClick={generateNewGame}
                 className="restart">
                 <i className="fa-solid fa-rotate-right"></i>
             </button>

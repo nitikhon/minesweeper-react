@@ -14,7 +14,8 @@ export default function GameOver(props){
                 <p>Congratulations! You win the game!</p>
                 <p>Time</p>
                 <div className="flex flex-row gap-2">
-                    <button 
+                    <button
+                        onClick={() => props.generateNewGame()}
                         className="border border-black border-1 p-2">
                         New game
                     </button>
@@ -30,7 +31,8 @@ export default function GameOver(props){
                 <p>Game Over!</p>
                 <p>Time</p>
                 <div className="flex flex-row gap-2">
-                    <button 
+                    <button
+                        onClick={() => props.generateNewGame()}
                         className="border border-black border-1 p-2">
                         New game
                     </button>
