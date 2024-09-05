@@ -256,6 +256,13 @@ export default function Board(){
             <div className="game-stats">
                 <DiffSelect diff={gameMode} onDiffChange={handleDiffChange} />
                 <p>Mines: {minesCount[gameMode]}</p>
+                {gameOver.currentState && 
+                <button
+                    onClick={generateNewGame}
+                    className="restart">
+                    <i className="fa-solid fa-rotate-right"></i>
+                </button>
+                }
             </div>
             {gameOver.currentState && 
             <GameOver 
@@ -266,13 +273,6 @@ export default function Board(){
             <div className={`board-container ${getGridColsClass()}`}>
                 {cellElements}
             </div>
-            {gameOver.currentState && 
-            <button
-                onClick={generateNewGame}
-                className="restart">
-                <i className="fa-solid fa-rotate-right"></i>
-            </button>
-            }
         </div>
         
     )

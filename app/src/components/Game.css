@@ -3,15 +3,15 @@
 }
 
 .title-container {
-    @apply mt-4 mb-8;
+    @apply mt-4 mb-8 border-2 border-black rounded-md p-4;
 }
 
 .game-stats {
-    @apply mb-4 w-full grid grid-cols-2;
+    @apply mb-4 w-full flex flex-row justify-center items-center gap-8;
 }
 
 .diff-list {
-    @apply absolute;
+    @apply absolute bg-white opacity-100 rounded-md;
 }
 
 .board-container {
@@ -34,7 +34,7 @@
 }
 
 .restart {
-    @apply mt-6 border-2 border-black p-1 w-10 h-10;
+    @apply border-2 border-black p-1 w-10 h-10;
 }
 
 .mined {
@@ -45,4 +45,8 @@
     .unrevealed, .revealed {
         @apply w-8 h-8;
     }
+}
+
+.diff-list li {
+    @apply hover:scale-110 transition-transform duration-300;
 }

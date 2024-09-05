@@ -15,14 +15,17 @@ export default function DiffSelect(props) {
 
     return (
       <div>
-        <button onClick={toggleDropdown}>
-          <p>{props.diff}</p>
+        <button 
+          onClick={toggleDropdown} 
+          className='border-2 border-black p-1.5 rounded-md'
+        >
+          <p>{props.diff[0].toUpperCase() + props.diff.slice(1)}</p>
         </button>
         {drop &&
-          <ul className="diff-list">
-            <li onClick={() => toggleDiff('easy')}>Easy</li>
-            <li onClick={() => toggleDiff('normal')}>Normal</li>
-            <li onClick={() => toggleDiff('hard')}>Hard</li>
+          <ul className="diff-list border-2 border-black mt-1 p-1">
+            <li className="" onClick={() => toggleDiff('easy')}>Easy</li>
+            <li className="" onClick={() => toggleDiff('normal')}>Normal</li>
+            <li className="" onClick={() => toggleDiff('hard')}>Hard</li>
           </ul>}
       </div>
     )
