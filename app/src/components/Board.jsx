@@ -47,6 +47,11 @@ export default function Board(){
     // ใช้เช็คว่าเปิดทุกช่องที่ไม่ใช่ระเบิดครบรึยัง
     const [mineRevealed, setMineRevealed] = useState(0);
 
+    // Change gameMode and re-render game
+    const handleDiffChange = (newDiff) => { setGameMode(newDiff); }
+    useEffect(() => { generateNewGame(gameMode); }, [gameMode]);
+
+
     // generate กระดาน
     const generateAllCells = () => {
         const arr = [];
@@ -249,7 +254,7 @@ export default function Board(){
                 <h2>Powered by React.js</h2>
             </div>
             <div className="game-stats">
-                <DiffSelect diff='easy'/>
+                <DiffSelect diff={gameMode} onDiffChange={handleDiffChange} />
                 <p>Mines: {minesCount[gameMode]}</p>
             </div>
             {gameOver.currentState && 

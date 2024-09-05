@@ -7,7 +7,11 @@
 }
 
 .game-stats {
-    @apply mb-4;
+    @apply mb-4 w-full grid grid-cols-2;
+}
+
+.diff-list {
+    @apply absolute;
 }
 
 .board-container {
