@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Cell from "./Cell";
 import GameOver from "./GameOver";
 import DiffSelect from './DiffSelect.jsx';
+import Timer from "./Timer.jsx";
 import './Game.css';
 
 export default function Board(){
@@ -46,6 +47,8 @@ export default function Board(){
     const [currentFlag, setCurrentFlag] = useState(0)
     // ใช้เช็คว่าเปิดทุกช่องที่ไม่ใช่ระเบิดครบรึยัง
     const [mineRevealed, setMineRevealed] = useState(0);
+    // ใช้นับเวลาที่ใช้เล่นเกม
+    const [time, setTime] = useState(0)
 
     // Change gameMode and re-render game
     const handleDiffChange = (newDiff) => { setGameMode(newDiff); }
@@ -205,8 +208,20 @@ export default function Board(){
         });
         setFirstMove(true);
         setMineRevealed(0);
+        setTime(0);
     }
     
+    // helper function ใช้ปรับรูปแบบเวลา 
+    const formatTime = (time) => {
+        const minutes = Math.floor(time / 60000);
+        const seconds = Math.floor((time % 60000) / 1000);
+        const milliseconds = Math.floor((time % 1000) / 10);
+
+        return `${minutes.toString().padStart(2, '0')}:${seconds
+            .toString()
+            .padStart(2, '0')}:${milliseconds.toString().padStart(2, '0')}`;
+    };
+
     // map each cell to cell component
     const cellElements = cells.map(cellRow =>
         cellRow.map(cell => 
@@ -263,12 +278,19 @@ export default function Board(){
                     <i className="fa-solid fa-rotate-right"></i>
                 </button>
                 }
+                <Timer 
+                    gameOver={gameOver.currentState} 
+                    time={time} setTime={setTime} 
+                    formatTime={formatTime}
+                />
             </div>
             {gameOver.currentState && 
             <GameOver 
                 isWinning={gameOver.isWinning} 
-                isShow={gameOver.currentState} 
+                isShow={gameOver.currentState}
+                time={time}
                 generateNewGame={generateNewGame}
+                formatTime={formatTime}
             />}
             <div className={`board-container ${getGridColsClass()}`}>
                 {cellElements}

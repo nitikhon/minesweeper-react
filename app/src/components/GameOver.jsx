@@ -1,4 +1,5 @@
 import { useState } from "react";
+import ConfettiExplosion from 'react-confetti-explosion';
 
 export default function GameOver(props){
     const [showModal, setShowModal] = useState(props.isShow);
@@ -11,8 +12,9 @@ export default function GameOver(props){
           {
             props.isWinning ?
             <div className="flex flex-col justify-center items-center gap-4 p-4 bg-white">
+                                <ConfettiExplosion duration={5000} particleSize={16} particleCount={200} />
                 <p>Congratulations! You win the game!</p>
-                <p>Time</p>
+                <p>Time: {props.formatTime(props.time)}</p>
                 <div className="flex flex-row gap-2">
                     <button
                         onClick={() => props.generateNewGame()}
@@ -29,7 +31,7 @@ export default function GameOver(props){
             :
             <div className="flex flex-col justify-center items-center gap-2 p-4 bg-white">
                 <p>Game Over!</p>
-                <p>Time</p>
+                <p>Time: {props.formatTime(props.time)}</p>
                 <div className="flex flex-row gap-2">
                     <button
                         onClick={() => props.generateNewGame()}

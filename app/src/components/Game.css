@@ -43,7 +43,7 @@
 
 @media (min-width: 640px) {
     .unrevealed, .revealed {
-        @apply w-8 h-8;
+        @apply w-5 h-5;
     }
 }
 
