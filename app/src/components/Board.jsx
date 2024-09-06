@@ -265,8 +265,8 @@ export default function Board(){
     return (
         <div className="game-container">
             <div className="title-container">
-                <h1>Simple Minesweeper</h1>
-                <h2>Powered by React.js</h2>
+                <h1 className="font-bold">Simple Minesweeper</h1>
+                <h2 className="opacity-50">Powered by React.js</h2>
             </div>
             <div className="game-stats">
                 <DiffSelect diff={gameMode} onDiffChange={handleDiffChange} />

@@ -1,9 +1,10 @@
 .game-container {
-    @apply flex flex-col justify-center items-center mt-2;
+    @apply flex flex-col justify-center items-center mt-4;
 }
 
 .title-container {
-    @apply mt-4 mb-8 border-2 border-black rounded-md p-4;
+    @apply bg-gray-300 mt-4 mb-8 border-2 border-black rounded-md 
+    px-6 py-4;
 }
 
 .game-stats {
@@ -41,9 +42,33 @@
     @apply bg-red-300 font-bold;
 }
 
+._easy-button {
+    @apply bg-green-400 m-1 border-2 border-black px-2.5 py-1.5 rounded-md;
+}
+
+._normal-button {
+    @apply bg-yellow-400 m-1 border-2 border-black px-2.5 py-1.5 rounded-md;
+}
+
+._hard-button {
+    @apply bg-red-400 m-1 border-2 border-black px-2.5 py-1.5 rounded-md;
+}
+
+._easy {
+    @apply bg-green-400 m-1 p-1;
+}
+
+._normal {
+    @apply bg-yellow-400 m-1 p-1;
+}
+
+._hard {
+    @apply text-white bg-red-400 m-1 p-1;
+}
+
 @media (min-width: 640px) {
     .unrevealed, .revealed {
-        @apply w-5 h-5;
+        @apply w-7 h-7;
     }
 }
 
